@@ -2,6 +2,9 @@
 .cpcache/
 .idea/
 .nrepl-port
+.calva/
+.clj-kondo/
+.lsp/
 *.iml
 *.db
 log/
