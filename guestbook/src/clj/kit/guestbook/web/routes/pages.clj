@@ -19,6 +19,7 @@
 (defn home [{:keys [flash] :as request}]
   (let [{:keys [query-fn]} (utils/route-data request)]
     (layout/render request "home.html" {:messages (query-fn :get-messages {})
+                                        :items (query-fn :get-items {})
                                         :errors (:errors flash)})))
 
 ;; Routes

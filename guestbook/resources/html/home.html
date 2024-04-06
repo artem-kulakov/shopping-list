@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Guestbook - A Kit demo app">
-    <title>Welcome to guestbook</title>
+    <title>Shopping list</title>
 
     <!-- styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
@@ -56,6 +56,40 @@
                         <div class="notification is-danger">{{errors.message}}</div>
                         {% endif %}
                         <input type="submit" class="button is-primary is-outlined has-text-dark" value="comment" />
+                    </form>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <h3>Items</h3>
+                    <ul class="messages">
+                        {% for item in items %}
+                        <li>
+                            <time>{{item.timestamp}}</time>
+                            <p> {{item.name}}</p>
+                            <p>{{item.status}}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    {% if errors.unknown %}
+                    <div class="notification is-danger">{{errors.unknown}}</div>
+                    {% endif %}
+                    <form method="POST" action="/add-item">
+                        {% csrf-field %}
+                        <p>
+                            <label>
+                            Name:
+                            <input class="input" type="text" name="name" value="{{name}}" />
+                            </label>
+                        </p>
+                        {% if errors.name %}
+                        <div class="notification is-danger">{{errors.name}}</div>
+                        {% endif %}
+                        <input type="submit" class="button is-primary is-outlined has-text-dark" value="add" />
                     </form>
                 </div>
             </div>
