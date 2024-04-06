@@ -1,6 +1,7 @@
 (ns kit.guestbook.web.routes.pages
   (:require
    [kit.guestbook.web.controllers.guestbook :as guestbook]
+   [kit.guestbook.web.controllers.items :as items]
    [kit.guestbook.web.middleware.exception :as exception]
    [kit.guestbook.web.pages.layout :as layout]
    [kit.guestbook.web.routes.utils :as utils]
@@ -23,6 +24,7 @@
 ;; Routes
 (defn page-routes [_opts]
   [["/" {:get home}]   
+   ["/add-item" {:post items/add-item!}]
    ["/save-message" {:post guestbook/save-message!}]])
 
 (defn route-data [opts]
