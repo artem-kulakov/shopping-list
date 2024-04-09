@@ -21,19 +21,19 @@
         (-> (http-response/found "/")
             (assoc :flash {:errors {:unknown (.getMessage e)}}))))))
 
-(defn update-item-status!
-  [{{:strs [id status]} :form-params :as request}]
-  (log/debug "updating item status" id status)
+(defn toggle-item-complete!
+  [{{:strs [id complete]} :form-params :as request}]
+  (log/debug "updating item complete" id complete)
   (let [{:keys [query-fn]} (utils/route-data request)]
     (try
-      (if (or (empty? id) (empty? status))
+      (if (or (empty? id) (empty? complete))
         (cond-> (http-response/found "/")
           (empty? id) ;; remove this
           (assoc-in [:flash :errors :status] "ID is required") ;; remove this
-          (empty? status)
-          (assoc-in [:flash :errors :status] "status is required"))
+          (empty? complete)
+          (assoc-in [:flash :errors :status] "complete is required"))
         (do
-          (query-fn :update-item-status! {:id id :status status})
+          (query-fn :update-item-complete! {:id id :complete complete})
           (http-response/found "/")))
       (catch Exception e
         (log/error e "failed to update item!")

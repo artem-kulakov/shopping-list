@@ -26,7 +26,7 @@
 (defn page-routes [_opts]
   [["/" {:get home}]   
    ["/add-item" {:post items/add-item!}]
-   ["/update-item-status" {:post items/update-item-status!}]
+   ["/toggle-item-complete" {:post items/toggle-item-complete!}]
    ["/save-message" {:post guestbook/save-message!}]])
 
 (defn route-data [opts]

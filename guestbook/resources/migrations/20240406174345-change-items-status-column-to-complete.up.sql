@@ -1,0 +1,5 @@
+ALTER TABLE items
+ADD COLUMN complete BOOLEAN DEFAULT FALSE;
+--;;
+ALTER TABLE items
+DROP COLUMN status;

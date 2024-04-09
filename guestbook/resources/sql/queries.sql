@@ -22,8 +22,8 @@ INSERT INTO items
 (name)
 VALUES (:name)
 
--- :name update-item-status! :! :n
--- :doc updates the item status
+-- :name update-item-complete! :! :n
+-- :doc updates the item's "complete" field
 UPDATE items
-SET status = :status
+SET complete = :complete
 WHERE id = :id

@@ -67,16 +67,16 @@
                         <li>
                             <time>{{item.timestamp}}</time>
                             <p> {{item.name}}</p>
-                            <form method="POST" action="/update-item-status">
+                            <form method="POST" action="/toggle-item-complete">
                                 {% csrf-field %}
                                 <p>
                                     <!-- <input class="input" type="checkbox" name="status" value="{{item.status}}" /> -->
                                 </p>
-                                <input type="hidden" name="status" value="complete">
+                                <input type="hidden" name="complete" value="true">
                                 <input type="hidden" name="id" value="{{item.id}}">
-                                <input type="submit" class="button is-primary is-outlined has-text-dark" value="{{item.status}}" />
-                                {% if errors.status %}
-                                <div class="notification is-danger">{{errors.status}}</div>
+                                <input type="submit" class="button is-primary is-outlined has-text-dark" value="{{item.complete}}" />
+                                {% if errors.complete %}
+                                <div class="notification is-danger">{{errors.complete}}</div>
                                 {% endif %}
                             </form>
                         </li>

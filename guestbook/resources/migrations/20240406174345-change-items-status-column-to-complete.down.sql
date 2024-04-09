@@ -1,0 +1,5 @@
+ALTER TABLE items
+ADD COLUMN status VARCHAR(10) DEFAULT 'open';
+--;;
+ALTER TABLE items
+DROP COLUMN complete;
