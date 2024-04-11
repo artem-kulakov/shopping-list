@@ -28,12 +28,10 @@
     (try
       (if (or (empty? id) (empty? complete))
         (cond-> (http-response/found "/")
-          (empty? id) ;; remove this
-          (assoc-in [:flash :errors :status] "ID is required") ;; remove this
           (empty? complete)
           (assoc-in [:flash :errors :status] "complete is required"))
         (do
-          (query-fn :update-item-complete! {:id id :complete complete})
+          (query-fn :update-item-complete! {:id id :complete (= complete "0")})
           (http-response/found "/")))
       (catch Exception e
         (log/error e "failed to update item!")
