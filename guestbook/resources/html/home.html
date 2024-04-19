@@ -104,6 +104,17 @@
                     </form>
                 </div>
             </div>
+            <div class="columns">
+                <div class="column">
+                    {% if errors.unknown %}
+                    <div class="notification is-danger">{{errors.unknown}}</div>
+                    {% endif %}
+                    <form method="POST" action="/sort-items">
+                        {% csrf-field %}
+                        <input type="submit" class="button is-primary is-outlined has-text-dark" value="sort" />
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 </body>

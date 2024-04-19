@@ -37,3 +37,15 @@
         (log/error e "failed to update item!")
         (-> (http-response/found "/")
             (assoc :flash {:errors {:unknown (.getMessage e)}}))))))
+
+(defn sort-items!
+  [{{:strs []} :form-params :as request}]
+  (log/debug "sorting items")
+  (let [{:keys [query-fn]} (utils/route-data request)]
+    (try
+      (query-fn :sort-items! {})
+      (http-response/found "/")
+      (catch Exception e
+        (log/error e "failed to sort items!")
+        (-> (http-response/found "/")
+            (assoc :flash {:errors {:unknown (.getMessage e)}}))))))
