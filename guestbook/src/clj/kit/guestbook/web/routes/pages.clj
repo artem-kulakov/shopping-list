@@ -1,6 +1,5 @@
 (ns kit.guestbook.web.routes.pages
   (:require
-   [kit.guestbook.web.controllers.guestbook :as guestbook]
    [kit.guestbook.web.controllers.items :as items]
    [kit.guestbook.web.middleware.exception :as exception]
    [kit.guestbook.web.pages.layout :as layout]
@@ -18,8 +17,7 @@
 
 (defn home [{:keys [flash] :as request}]
   (let [{:keys [query-fn]} (utils/route-data request)]
-    (layout/render request "home.html" {:messages (query-fn :get-messages {})
-                                        :items (query-fn :get-items {})
+    (layout/render request "home.html" {:items (query-fn :get-items {})
                                         :errors (:errors flash)})))
 
 ;; Routes
@@ -27,8 +25,7 @@
   [["/" {:get home}]
    ["/add-item" {:post items/add-item!}]
    ["/toggle-item-complete" {:post items/toggle-item-complete!}]
-   ["/sort-items" {:post items/sort-items!}]
-   ["/save-message" {:post guestbook/save-message!}]])
+   ["/sort-items" {:post items/sort-items!}]])
 
 (defn route-data [opts]
   (merge opts
