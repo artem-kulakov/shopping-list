@@ -1,8 +1,0 @@
-kit.git-config.edn
-/.idea
-*.iml
-/devdata
-.nrepl-port
-/resources/seed/mbdump
-.DS_STore
-/log
